@@ -265,6 +265,37 @@ public class IntercomPlugin extends Plugin {
         call.resolve();
     }
 
+    @PluginMethod
+    public void setCompanies(PluginCall call) {
+        JSArray companiesArray = call.getArray("companies");
+    
+        if (companiesArray == null) {
+            call.reject("companies array is required");
+            return;
+        }
+    
+        List<Company> companies = new ArrayList<>();
+        try {
+            for (int i = 0; i < companiesArray.length(); i++) {
+                JSObject companyObj = companiesArray.getJSONObject(i);
+                String companyId = companyObj.getString("companyId");
+                String name = companyObj.getString("name");
+    
+                Company company = new Company.Builder()
+                        .withCompanyId(companyId)
+                        .withName(name)
+                        .build();
+                companies.add(company);
+            }
+        } catch (JSONException e) {
+            call.reject("Invalid company object format", e);
+            return;
+        }
+    
+        Intercom.client().setCompanies(companies);
+        call.resolve();
+    }
+
     private void setUpIntercom() {
         try {
             // get config

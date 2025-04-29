@@ -221,4 +221,25 @@ public class IntercomPlugin: CAPPlugin {
             call.reject("articleId not provided to presentArticle.")
         }
     }
+
+    @objc func setCompanies(_ call: CAPPluginCall) {
+        guard let companiesArray = call.getArray("companies", JSObject.self) else {
+            call.reject("companies array is required")
+            return
+        }
+
+        var companies: [ICMCompany] = []
+        for companyDict in companiesArray {
+            if let companyId = companyDict["companyId"] as? String,
+            let name = companyDict["name"] as? String {
+                let company = ICMCompany()
+                company.companyId = companyId
+                company.name = name
+                companies.append(company)
+            }
+        }
+
+        Intercom.setCompanies(companies)
+        call.resolve()
+    }
 }

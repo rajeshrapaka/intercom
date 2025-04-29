@@ -158,6 +158,7 @@ Now you should be set to go. Try to run your client using `ionic cap run android
 * [`addListener('windowDidShow', ...)`](#addlistenerwindowdidshow-)
 * [`addListener('windowDidHide', ...)`](#addlistenerwindowdidhide-)
 * [`removeAllListeners()`](#removealllisteners)
+* [`setCompanies(...)`](#setcompanies)
 * [Interfaces](#interfaces)
 
 </docgen-index>
@@ -426,6 +427,19 @@ addListener(eventName: 'windowDidHide', listenerFunc: () => void) => Promise<Plu
 ```typescript
 removeAllListeners() => Promise<void>
 ```
+
+--------------------
+
+
+### setCompanies(...)
+
+```typescript
+setCompanies(options: { companies: { companyId: string; name: string; }[]; }) => Promise<void>
+```
+
+| Param         | Type                                                                |
+| ------------- | ------------------------------------------------------------------- |
+| **`options`** | <code>{ companies: { companyId: string; name: string; }[]; }</code> |
 
 --------------------
 

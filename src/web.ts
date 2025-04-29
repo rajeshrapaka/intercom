@@ -83,6 +83,11 @@ export class IntercomWeb extends WebPlugin implements IntercomPlugin {
     throw this.unimplemented('Not implemented on web.');
   }
 
+  async setCompanies(options: { companies: { companyId: string; name: string }[] }): Promise<void> {
+    options;
+    throw this.unimplemented('Not implemented on web.');
+  }
+
   receivePush(notification: IntercomPushNotificationData): Promise<void> {
     notification;
     throw this.unimplemented('Not implemented on web.');

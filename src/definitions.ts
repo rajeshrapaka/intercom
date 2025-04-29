@@ -24,6 +24,8 @@ export interface IntercomPlugin {
   addListener(eventName: 'windowDidShow', listenerFunc: () => void): Promise<PluginListenerHandle>;
   addListener(eventName: 'windowDidHide', listenerFunc: () => void): Promise<PluginListenerHandle>;
   removeAllListeners(): Promise<void>;
+  setCompanies(options: { companies: { companyId: string; name: string }[] }): Promise<void>;
+
 }
 
 export interface IntercomPushNotificationData {
